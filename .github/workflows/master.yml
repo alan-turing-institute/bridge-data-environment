@@ -12,8 +12,7 @@ env:
   GITHUB_REF: ${{ github.ref }}
   GITHUB_SHA: ${{ github.sha }}
   IMAGE_PREFIX: sgibson91/
-  CWD: pwd
-  DIR_TO_BUILD: "${CWD}environment/"
+  DIR_TO_BUILD: environment
 
 jobs:
   build-env:
