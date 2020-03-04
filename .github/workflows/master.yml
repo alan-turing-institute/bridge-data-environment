@@ -11,7 +11,9 @@ on:
 env:
   GITHUB_REF: ${{ github.ref }}
   GITHUB_SHA: ${{ github.sha }}
-  IMAGE_PREFIX: turinginst/
+  IMAGE_PREFIX: sgibson91/
+  CWD: pwd
+  DIR_TO_BUILD: "${CWD}environment/"
 
 jobs:
   build-env:
@@ -28,11 +30,11 @@ jobs:
         SHA="$( git rev-parse --short ${GITHUB_SHA} )"
         DOCKER_TAG="${CALVER}-${SHA}"
         IMAGE_SPEC="${IMAGE_PREFIX}${IMAGE}:${DOCKER_TAG}"
-        ONBUILD_IMAGE_SPEC="${IMAGE_PREFIX}${IMAGE}-onbuild:${DOCKER_TAG}"
+        IMAGE_SPEC_LATEST="${IMAGE_PREFIX}${IMAGE}:latest"
 
         echo "::set-env name=DOCKER_TAG::${DOCKER_TAG}"
         echo "::set-env name=IMAGE_SPEC::${IMAGE_SPEC}"
-        echo "::set-env name=ONBUILD_IMAGE_SPEC::${ONBUILD_IMAGE_SPEC}"
+        echo "::set-env name=IMAGE_SPEC_LATEST::${IMAGE_SPEC_LATEST}"
 
     - name: Setup Python 3.7
       uses: actions/setup-python@v1
@@ -46,3 +48,13 @@ jobs:
     - name: Authenticate with Docker Hub
       run: |
         echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+    - name: Running repo2docker
+      run: |
+        if docker pull "${IMAGE_SPEC_LATEST}"; then
+          echo "Using ${IMAGE_SPEC_LATEST} as cache"
+          jupyter-repo2docker --debug --user-name jovyan --user-id 1000 --no-run --image-name "${IMAGE_SPEC}" --cache-from "${IMAGE_SPEC_LATEST}" "${DIR_TO_BUILD}"
+        else
+          echo "Building ${IMAGE_SPEC} from scratch"
+          jupyter-repo2docker --debug --user-name jovyan --user-id 1000 --no-run --image-name "${IMAGE_SPEC}" "${DIR_TO_BUILD}"
+        fi
