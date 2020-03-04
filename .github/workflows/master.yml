@@ -5,7 +5,7 @@ on:
     branches:
       - master
   pull_request:
-    braches:
+    branches:
       - master
 
 env:
@@ -28,12 +28,9 @@ jobs:
         CALVER="$( date -u '+%Y.%m.%d' )"  # Calendar Versioning
         SHA="$( git rev-parse --short ${GITHUB_SHA} )"
         DOCKER_TAG="${CALVER}-${SHA}"
-        IMAGE_SPEC="${IMAGE_PREFIX}${IMAGE}:${DOCKER_TAG}"
-        IMAGE_SPEC_LATEST="${IMAGE_PREFIX}${IMAGE}:latest"
-
+        IMAGE_NAME="${IMAGE_PREFIX}${IMAGE}"
         echo "::set-env name=DOCKER_TAG::${DOCKER_TAG}"
-        echo "::set-env name=IMAGE_SPEC::${IMAGE_SPEC}"
-        echo "::set-env name=IMAGE_SPEC_LATEST::${IMAGE_SPEC_LATEST}"
+        echo "::set-env name=IMAGE_NAME::${IMAGE_NAME}"
 
     - name: Setup Python 3.7
       uses: actions/setup-python@v1
@@ -50,10 +47,10 @@ jobs:
 
     - name: Running repo2docker
       run: |
-        if docker pull "${IMAGE_SPEC_LATEST}"; then
-          echo "Using ${IMAGE_SPEC_LATEST} as cache"
-          jupyter-repo2docker --debug --user-name jovyan --user-id 1000 --no-run --image-name "${IMAGE_SPEC}" --cache-from "${IMAGE_SPEC_LATEST}" "${DIR_TO_BUILD}"
+        if docker pull "${IMAGE_NAME}"; then
+          echo "Using ${IMAGE_NAME} as cache"
+          jupyter-repo2docker --debug --user-name jovyan --user-id 1000 --no-run --image-name "${IMAGE_NAME}" --cache-from "${IMAGE_NAME}" "${HOME}/${DIR_TO_BUILD}"
         else
-          echo "Building ${IMAGE_SPEC} from scratch"
-          jupyter-repo2docker --debug --user-name jovyan --user-id 1000 --no-run --image-name "${IMAGE_SPEC}" "${DIR_TO_BUILD}"
+          echo "Building ${IMAGE_NAME} from scratch"
+          jupyter-repo2docker --debug --user-name jovyan --user-id 1000 --no-run --image-name "${IMAGE_NAME}" "${HOME}/${DIR_TO_BUILD}"
         fi
