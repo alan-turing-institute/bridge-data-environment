@@ -42,5 +42,7 @@ jobs:
     - name: Install repo2docker
       run: |
         python3 -m pip install https://github.com/jupyter/repo2docker/archive/master.zip
-        R2D_VERSION="$( python3 -c 'import repo2docker; print(repo2docker.__version__)' )"
-        echo "${R2D_VERSION}"
+
+    - name: Authenticate with Docker Hub
+      run: |
+        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
