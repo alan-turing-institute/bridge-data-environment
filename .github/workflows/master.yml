@@ -30,10 +30,17 @@ jobs:
         IMAGE_SPEC="${IMAGE_PREFIX}${IMAGE}:${DOCKER_TAG}"
         ONBUILD_IMAGE_SPEC="${IMAGE_PREFIX}${IMAGE}-onbuild:${DOCKER_TAG}"
 
-        echo "${DOCKER_TAG}"
-        echo "${IMAGE_SPEC}"
-        echo "${ONBUILD_IMAGE_SPEC}"
-
         echo "::set-env name=DOCKER_TAG::${DOCKER_TAG}"
         echo "::set-env name=IMAGE_SPEC::${IMAGE_SPEC}"
         echo "::set-env name=ONBUILD_IMAGE_SPEC::${ONBUILD_IMAGE_SPEC}"
+
+    - name: Setup Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+
+    - name: Install repo2docker
+      run: |
+        python3 -m pip install https://github.com/jupyter/repo2docker/archive/master.zip
+        R2D_VERSION="$( python3 -c 'import repo2docker; print(repo2docker.__version__)' )"
+        echo "${R2D_VERSION}"
