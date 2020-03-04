@@ -22,7 +22,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: ls
+    - run: |
+        pwd && ls
 
     - name: Set Job Environment Variables
       run: |
@@ -50,8 +51,8 @@ jobs:
       run: |
         if docker pull "${IMAGE_NAME}"; then
           echo "Using ${IMAGE_NAME} as cache"
-          jupyter-repo2docker --debug --user-name jovyan --user-id 1000 --no-run --image-name "${IMAGE_NAME}" --cache-from "${IMAGE_NAME}" "${HOME}/${DIR_TO_BUILD}"
+          jupyter-repo2docker --debug --user-name jovyan --user-id 1000 --no-run --image-name "${IMAGE_NAME}" --cache-from "${IMAGE_NAME}" "${DIR_TO_BUILD}"
         else
           echo "Building ${IMAGE_NAME} from scratch"
-          jupyter-repo2docker --debug --user-name jovyan --user-id 1000 --no-run --image-name "${IMAGE_NAME}" "${HOME}/${DIR_TO_BUILD}"
+          jupyter-repo2docker --debug --user-name jovyan --user-id 1000 --no-run --image-name "${IMAGE_NAME}" "${DIR_TO_BUILD}"
         fi
