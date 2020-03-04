@@ -1,0 +1,39 @@
+name: Master Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    braches:
+      - master
+
+env:
+  GITHUB_REF: ${{ github.ref }}
+  GITHUB_SHA: ${{ github.sha }}
+  IMAGE_PREFIX: turinginst/
+
+jobs:
+  build-env:
+    env:
+      IMAGE: bridge-data-env
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set Job Environment Variables
+      run: |
+        CALVER="$( date -u '+%Y.%m.%d' )"  # Calendar Versioning
+        SHA="$( git rev-parse --short ${GITHUB_SHA} )"
+        DOCKER_TAG="${CALVER}-${SHA}"
+        IMAGE_SPEC="${IMAGE_PREFIX}${IMAGE}:${DOCKER_TAG}"
+        ONBUILD_IMAGE_SPEC="${IMAGE_PREFIX}${IMAGE}-onbuild:${DOCKER_TAG}"
+
+        echo "${DOCKER_TAG}"
+        echo "${IMAGE_SPEC}"
+        echo "${ONBUILD_IMAGE_SPEC}"
+
+        echo "::set-env name=DOCKER_TAG::${DOCKER_TAG}"
+        echo "::set-env name=IMAGE_SPEC::${IMAGE_SPEC}"
+        echo "::set-env name=ONBUILD_IMAGE_SPEC::${ONBUILD_IMAGE_SPEC}"
