@@ -23,7 +23,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: |
-        sudo apt-get update -y && sudo apt-get install -y apt-utils
+        apt-get update -y && apt-get install -y apt-utils
 
     - name: Set Job Environment Variables
       run: |
