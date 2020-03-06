@@ -51,8 +51,13 @@ jobs:
       run: |
         if docker pull "${IMAGE_NAME}"; then
           echo "Using ${IMAGE_NAME} as cache"
-          jupyter-repo2docker --debug --user-name jovyan --user-id 1000 --no-run --image-name "${IMAGE_NAME}" --cache-from "${IMAGE_NAME}" "${DIR_TO_BUILD}"
+          jupyter-repo2docker --image-name "${IMAGE_NAME}" --debug --no-run --push --user-id 1000 --user-name jovyan --cache-from "${IMAGE_NAME}" "${DIR_TO_BUILD}"
         else
           echo "Building ${IMAGE_NAME} from scratch"
-          jupyter-repo2docker --debug --user-name jovyan --user-id 1000 --no-run --image-name "${IMAGE_NAME}" "${DIR_TO_BUILD}"
+          jupyter-repo2docker --image-name "${IMAGE_NAME}" --debug --no-run --push --user-id 1000 --user-name jovyan "${DIR_TO_BUILD}"
         fi
+
+    - name: Tag and push image to Docker Hub
+      run: |
+        docker tag "${IMAGE_NAME}:latest" "${IMAGE_NAME}:${DOCKER_TAG}"
+        docker push "${IMAGE_NAME}:${DOCKER_TAG}"
