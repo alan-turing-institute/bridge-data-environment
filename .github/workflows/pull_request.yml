@@ -39,3 +39,7 @@ jobs:
     - name: Install repo2docker
       run: |
         python3 -m pip install https://github.com/jupyter/repo2docker/archive/master.zip
+
+    - name: Test repo2docker
+      run: |
+        jupyter-repo2docker --debug --no-build --image-name "${IMAGE_NAME}" "${DIR_TO_BUILD}"
