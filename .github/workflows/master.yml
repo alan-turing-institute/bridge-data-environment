@@ -45,7 +45,6 @@ jobs:
         echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
     - name: Running repo2docker
-      timeout-minutes: 900
       run: |
         if docker pull "${IMAGE_NAME}"; then
           echo "Using ${IMAGE_NAME} as cache"
