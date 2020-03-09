@@ -8,7 +8,7 @@ on:
 env:
   GITHUB_REF: ${{ github.ref }}
   GITHUB_SHA: ${{ github.sha }}
-  IMAGE_PREFIX: sgibson91/
+  IMAGE_PREFIX: turinginst/
   DIR_TO_BUILD: environment/
 
 jobs:
