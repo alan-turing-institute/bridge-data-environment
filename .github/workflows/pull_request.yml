@@ -1,0 +1,45 @@
+name: Pull Request Test
+
+on:
+  pull_request:
+    branches:
+      - master
+
+env:
+  GITHUB_REF: ${{ github.ref }}
+  GITHUB_SHA: ${{ github.sha }}
+  IMAGE_PREFIX: turinginst/
+  DIR_TO_BUILD: environment/
+
+jobs:
+  build-env:
+    env:
+      IMAGE: bridge-data-env
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: |
+        sudo apt-get update -y && sudo apt-get install -y apt-utils
+
+    - name: Set Job Environment Variables
+      run: |
+        CALVER="$( date -u '+%Y.%m.%d' )"  # Calendar Versioning
+        SHA="$( git rev-parse --short ${GITHUB_SHA} )"
+        DOCKER_TAG="${CALVER}-${SHA}"
+        IMAGE_NAME="${IMAGE_PREFIX}${IMAGE}"
+        echo "::set-env name=DOCKER_TAG::${DOCKER_TAG}"
+        echo "::set-env name=IMAGE_NAME::${IMAGE_NAME}"
+
+    - name: Setup Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+
+    - name: Install repo2docker
+      run: |
+        python3 -m pip install https://github.com/jupyter/repo2docker/archive/master.zip
+
+    - name: Test repo2docker
+      run: |
+        jupyter-repo2docker --debug --no-build --image-name "${IMAGE_NAME}" "${DIR_TO_BUILD}"
