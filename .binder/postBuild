@@ -1,3 +1,4 @@
 #!/bin/bash
 
+# DO NOT DELETE THIS LINE
 rm README.md LICENSE

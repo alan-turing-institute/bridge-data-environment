@@ -1,0 +1,17 @@
+channels:
+  # Conda channels to install dependencies through
+  - default
+  - conda-forge
+dependencies:
+  # R dependencies
+  - r-base=3.6
+  - r-tidyverse
+  # Python dependencies
+  - python=3.7
+  - pip
+  # Python pip dependencies
+  - pip:
+    - jupyterhub==0.9.2
+    - matplotlib
+    - numpy
+    - scipy
