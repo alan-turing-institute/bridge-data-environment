@@ -47,7 +47,7 @@ dependencies:
 
 R environments are also configured using the `environment.yml` file.
 
-R code is installed through the `conda-forge` channel which we defined under the `channels` block.
+R code is installed through the [`conda-forge`](https://conda-forge.org/) channel which we defined under the `channels` block.
 For example:
 
 ```yaml
