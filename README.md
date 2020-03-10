@@ -74,7 +74,7 @@ dependencies:
 ## `postBuild`
 
 This file is a `bash` script that is executed during the `docker build` phase but after the environment has been installed.
-`postBuild` can be used for a number of functions, including:
+[`postBuild`](https://mybinder.readthedocs.io/en/latest/config_files.html#postbuild-run-code-after-installing-the-environment) can be used for a number of functions, including:
 
 - pulling data,
 - enabling widgets,
