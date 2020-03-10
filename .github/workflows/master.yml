@@ -9,7 +9,7 @@ env:
   GITHUB_REF: ${{ github.ref }}
   GITHUB_SHA: ${{ github.sha }}
   IMAGE_PREFIX: turinginst/
-  DIR_TO_BUILD: environment/
+  DIR_TO_BUILD: ./
 
 jobs:
   build-env:
