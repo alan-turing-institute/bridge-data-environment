@@ -3,7 +3,7 @@
 A repo to manage to user environment deployed to JupyterHub :point_right: <https://github.com/alan-turing-institute/bridge-data-platform>
 
 The `.binder` folder contains [configuration files](https://repo2docker.readthedocs.io/en/latest/config_files.html) for installing programming languages and packages into the computing environment of a JupyterHub.
-The environment will be built by [repo2docker](https://repo2docker.readthedocs.io/) and pushed to a Docker Hub repository where it can be pulled by the JupyterHub and served to the users.
+The environment will be built by [repo2docker](https://repo2docker.readthedocs.io/) and pushed to the [Turing's Docker Hub repository](https://hub.docker.com/repository/docker/turinginst/bridge-data-env) where it can be pulled by the JupyterHub and served to the users.
 
 - [Contributing](#contributing)
 - [Python Environments](#python-environments)
