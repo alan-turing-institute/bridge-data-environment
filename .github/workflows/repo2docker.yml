@@ -1,4 +1,4 @@
-name: Master Build
+name: Run repo2docker
 
 on:
   push:
