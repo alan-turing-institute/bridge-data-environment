@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
 
 env:
   GITHUB_REF: ${{ github.ref }}
@@ -40,15 +43,23 @@ jobs:
       run: |
         python3 -m pip install https://github.com/jupyter/repo2docker/archive/master.zip
 
-    - name: Authenticate with Docker Hub
+    - name: Testing repo2docker
+      if: github.event.pull_request
       run: |
-        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+        jupyter-repo2docker --debug --no-build --image-name "${IMAGE_NAME}" "${DIR_TO_BUILD}"
 
     - name: Running repo2docker
+      if: github.event.push
       run: |
         jupyter-repo2docker --image-name "${IMAGE_NAME}" --debug --no-run --push --user-id 1000 --user-name jovyan "${DIR_TO_BUILD}"
 
+    - name: Authenticate with Docker Hub
+      if: github.event.push
+      run: |
+        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
     - name: Tag and push image to Docker Hub
+      if: github.event.push
       run: |
         docker tag "${IMAGE_NAME}:latest" "${IMAGE_NAME}:${DOCKER_TAG}"
         docker push "${IMAGE_NAME}:${DOCKER_TAG}"
