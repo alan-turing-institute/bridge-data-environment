@@ -1,5 +1,7 @@
 # JupyterHub Computational Environment
 
+![Run repo2docker](https://github.com/alan-turing-institute/bridge-data-environment/workflows/Run%20repo2docker/badge.svg)
+
 A repo to manage the user environment deployed to JupyterHub :point_right: <https://github.com/alan-turing-institute/bridge-data-platform>
 
 The `.binder` folder contains [configuration files](https://repo2docker.readthedocs.io/en/latest/config_files.html) for installing programming languages and packages into the computing environment of a JupyterHub.
