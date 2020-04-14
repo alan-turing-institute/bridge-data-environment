@@ -49,14 +49,13 @@ jobs:
 
       - name: repo2docker build
         run: |
-          jupyter-repo2docker \
+          repo2docker \
           --image-name "${IMAGE_NAME}" \
-          --debug \
           --no-run \
           --push \
           --user-id 1000 \
           --user-name jovyan \
-          --cache-from "${IMAGE_NAME}:latest" \
+          --cache-from "${IMAGE_NAME}" \
           "${DIR_TO_BUILD}"
 
       - name: Tag and Push to Docker Hub
