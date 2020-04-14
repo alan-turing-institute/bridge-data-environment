@@ -19,6 +19,8 @@ The environment will be built by [repo2docker](https://repo2docker.readthedocs.i
 
 ## Contributing
 
+Before starting, please read our [Code of Conduct](.community/CODE_OF_CONDUCT.md) :purple_heart:
+
 Anyone can make a [Pull Request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) to this repository to install a new language or package into the image.
 
 You can find ideas on how to configure different languages here :point_right: <https://github.com/binder-examples>
