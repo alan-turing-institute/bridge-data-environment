@@ -41,7 +41,7 @@ jobs:
           python3 -m pip install \
           https://github.com/jupyter/repo2docker/archive/master.zip
 
-      - name: Test repo2docker build
+      - name: repo2docker build
         run: |
           jupyter-repo2docker \
           --debug \
@@ -49,3 +49,8 @@ jobs:
           --image-name "${IMAGE_NAME}" \
           --cache-from "${IMAGE_NAME}:latest" \
           "${DIR_TO_BUILD}"
+
+      - name: Test Python Notebook
+        run: |
+          jupyter-repo2docker . \
+          jupyter nbconvert /home/jovyan/.tests/test-python-notebook.ipynb
