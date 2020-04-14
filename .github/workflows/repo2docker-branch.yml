@@ -1,4 +1,4 @@
-name: repo2docker build - Pull Request Build test
+name: repo2docker - pull requests
 
 on:
   pull_request:
@@ -12,7 +12,7 @@ env:
   DIR_TO_BUILD: ./
 
 jobs:
-  repo2docker-branch:
+  repo2docker-pull-requests:
     env:
       IMAGE: bridge-data-env
     runs-on: ubuntu-latest
