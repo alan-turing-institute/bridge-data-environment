@@ -60,5 +60,5 @@ jobs:
 
       - name: Tag and Push to Docker Hub
         run: |
-          docker tag ${IMAGE_NAME}:latest" ${IMAGE_NAME}:${DOCKER_TAG}"
+          docker tag "${IMAGE_NAME}:latest" "${IMAGE_NAME}:${DOCKER_TAG}"
           docker push "${IMAGE_NAME}:${DOCKER_TAG}"
