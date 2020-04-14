@@ -45,6 +45,7 @@ jobs:
         run: |
           jupyter-repo2docker \
           --debug \
-          --no-build \
+          --no-run \
           --image-name "${IMAGE_NAME}" \
+          --cache-from "${IMAGE_NAME}:latest" \
           "${DIR_TO_BUILD}"
