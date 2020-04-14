@@ -43,10 +43,4 @@ jobs:
 
       - name: Build and test repo2docker image
         run: |
-          jupyter-repo2docker \
-          --debug \
-          --no-run \
-          --image-name "${IMAGE_NAME}" \
-          --cache-from "${IMAGE_NAME}:latest" \
-          "${DIR_TO_BUILD}" \
-          jupyter nbconvert --execute .tests/*.ipynb
+          repo2docker "${DIR_TO_BUILD}" jupyter nbconvert --execute .tests/*.ipynb
