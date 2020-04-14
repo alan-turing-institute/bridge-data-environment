@@ -24,7 +24,7 @@ Use your best judgement and feel free to propose changes to this document in a P
 
 ## Code of Conduct
 
-Everyone participating in this project is expected to have read, abide by and uphold our [Code of Conduct](.community/CODE_OF_CONDUCT.md).
+Everyone participating in this project is expected to have read, abide by and uphold our [Code of Conduct](CODE_OF_CONDUCT.md).
 Please report unacceptable behaviour to [sgibson@turing.ac.uk](mailto:sgibson@turing.ac.uk).
 
 ## What should I know before I get started?
@@ -39,7 +39,7 @@ Using [GitHub Actions](https://help.github.com/en/actions) as continuous integra
 ### Repository Overview
 
 - The `.binder` folder contains all the files required to build the computational environment
-- The `.community` folder contains our [Code of Conduct](.community/CODE_OF_CONDUCT.md) and these Contributing Guidelines
+- The `.community` folder contains our [Code of Conduct](CODE_OF_CONDUCT.md) and these Contributing Guidelines
 - The `.github` folder contains Issue/Pull Request templates and our GitHub Actions files for our continuous integration pipeline
 - The `.tests` folder contains example Jupyter Notebooks that tests each language and available package
 
@@ -65,7 +65,7 @@ Please follow these steps to have your contribution reviewed by the team members
       For example, if you're fixing a typo that was raised in issue number #11, your branch would be named as such: `fix/11/typo`.
 3. Edit files or create new ones!
 4. [Open your Pull Request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)
-   1. This repository has a [Pull Request template](.github/PULL_REQUEST_TEMPLATE.md) designed to help others understand what your Pull Request is changing and how they should review it.
+   1. This repository has a [Pull Request template](/.github/PULL_REQUEST_TEMPLATE.md) designed to help others understand what your Pull Request is changing and how they should review it.
       Please complete it where possible.
 
 Congratulations! :tada:
