@@ -45,13 +45,31 @@ Using [GitHub Actions](https://help.github.com/en/actions) as continuous integra
 
 ### `repo2docker`
 
+[`repo2docker`](https://repo2docker.readthedocs.io) is a tool designed to create Docker images from repositories given the presence of some [configuration files](https://repo2docker.readthedocs.io/en/latest/config_files.html) that describe the software and dependencies that should be installed in the image.
 
+[Julia](https://julialang.org/), [Python](https://www.python.org/) and [R](https://www.r-project.org/) (the three tenets of Jupyter!) are all supported along with a range of other languages and package managers, such as [`apt`](https://devconnected.com/apt-package-manager-on-linux-explained/) and [`nix`](https://nixos.org/nix/).
+
+Before contributing to this repository, it is highly recommended that you become familiar with the types of files [`repo2docker` recognises](https://repo2docker.readthedocs.io/en/latest/config_files.html) and the files [already in use](/.binder) so as to understand how your contribution will fit in.
+Maintainers are always happy to answer any questions in the [issues](https://github.com/alan-turing-institute/bridge-data-environment/issues/new/choose) :smile:
 
 ## How can I contribute?
 
 ### Bug Reports
 
+If something is not working, please first check the issues to make sure the problem hasn't already been reported.
+Bug reports are usually assinged the [bug label](https://github.com/alan-turing-institute/bridge-data-environment/labels/bug) or have [[BUG]](https://github.com/alan-turing-institute/bridge-data-environment/issues?q=is%3Aissue+is%3Aopen+%5BBUG%5D) in their title.
+
+If the bug hasn't been reported, please [file a new bug report](https://github.com/alan-turing-institute/bridge-data-environment/issues/new?assignees=&labels=bug&template=bug_report.md&title=%5BBUG%5D).
+This repository has a [bug report template](/.github/ISSUE_TEMPLATE/bug_report.md) that will prompt you to provide as much detail as possible so we can quickly squash that bug! :bug:
+
 ### Feature Requests
+
+If you would like a new language, package or other feature introducing, please check that it has not already been requested in the issues first.
+Features are usually assigned the [enhancement label](https://github.com/alan-turing-institute/bridge-data-environment/labels/enhancement).
+If the feature request already exists, you can show your support for this feature by leaving a thumbs up emoji reaction on the top comment of the issue and provide any other thoughts or follow-up questions in the thread.
+
+If an issue does not exist for your idea, please open a new [feature request](https://github.com/alan-turing-institute/bridge-data-environment/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=).
+This repository has a [feature request template](/.github/ISSUE_TEMPLATE/feature_request.md) which will help scope out it's inclusion in the repo and can provide a means of tracking progress on the issue.
 
 ### Pull Requests
 
