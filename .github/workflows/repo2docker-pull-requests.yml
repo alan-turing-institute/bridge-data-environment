@@ -47,4 +47,5 @@ jobs:
           --debug \
           --no-build \
           --image-name "${IMAGE_NAME}" \
+          --cache-from "${IMAGE_NAME}:latest" \
           "${DIR_TO_BUILD}"
