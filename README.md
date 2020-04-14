@@ -78,7 +78,7 @@ dependencies:
   - r-tidyverse
 ```
 
-If your desired R packages are not available on `conda-forge`, please look into using a [`runtime.txt` file]() with either an [`install.R`]() file
+If your desired R packages are not available on `conda-forge`, please look into using a [`runtime.txt` file](https://repo2docker.readthedocs.io/en/latest/config_files.html#runtime-txt-specifying-runtimes) with either an [`install.R`](https://repo2docker.readthedocs.io/en/latest/config_files.html#install-r-install-an-r-rstudio-environment) file or [`DESCRIPTION`](https://repo2docker.readthedocs.io/en/latest/config_files.html#description-install-an-r-package) file.
 
 ## `postBuild`
 
