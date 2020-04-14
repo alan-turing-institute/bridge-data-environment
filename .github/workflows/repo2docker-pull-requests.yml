@@ -41,11 +41,6 @@ jobs:
           python3 -m pip install \
           https://github.com/jupyter/repo2docker/archive/master.zip
 
-      - name: Test repo2docker build
+      - name: Build and test repo2docker image
         run: |
-          jupyter-repo2docker \
-          --debug \
-          --no-run \
-          --image-name "${IMAGE_NAME}" \
-          --cache-from "${IMAGE_NAME}:latest" \
-          "${DIR_TO_BUILD}"
+          repo2docker --cache-from "${IMAGE_NAME}" "${DIR_TO_BUILD}" jupyter nbconvert --execute .tests/*.ipynb
