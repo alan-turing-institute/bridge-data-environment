@@ -19,6 +19,8 @@ The environment will be built by [repo2docker](https://repo2docker.readthedocs.i
 
 ## Contributing
 
+Before starting, please read our [Code of Conduct](.community/CODE_OF_CONDUCT.md) :purple_heart: and [Contributing Guidelines](.community/CONTRIBUTING.md) :space_invader:
+
 Anyone can make a [Pull Request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) to this repository to install a new language or package into the image.
 
 You can find ideas on how to configure different languages here :point_right: <https://github.com/binder-examples>
@@ -60,7 +62,7 @@ channels:
   - conda-forge
 ```
 
-The runtime version of R to be installed is defined in the `dependecies` block.
+The runtime version of R to be installed is defined in the `dependencies` block.
 For example:
 
 ```yaml
@@ -68,13 +70,15 @@ dependencies:
   - r-base=3.6
 ```
 
-Any R packages are also specified under the `dependencies` block **provided they are available on `conda-forge`**.
+Any R packages are also specified under the `dependencies` block :warning: **provided they are available on `conda-forge`** :warning:
 For example:
 
 ```yaml
 dependencies:
   - r-tidyverse
 ```
+
+If your desired R packages are not available on `conda-forge`, please look into using a [`runtime.txt` file](https://repo2docker.readthedocs.io/en/latest/config_files.html#runtime-txt-specifying-runtimes) with either an [`install.R`](https://repo2docker.readthedocs.io/en/latest/config_files.html#install-r-install-an-r-rstudio-environment) file or [`DESCRIPTION`](https://repo2docker.readthedocs.io/en/latest/config_files.html#description-install-an-r-package) file.
 
 ## `postBuild`
 
