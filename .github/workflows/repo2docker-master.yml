@@ -1,4 +1,4 @@
-name: repo2docker build - Master Build and Push
+name: repo2docker - master
 
 on:
   push:
