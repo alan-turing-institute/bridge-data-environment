@@ -49,4 +49,4 @@ jobs:
           --image-name "${IMAGE_NAME}" \
           --cache-from "${IMAGE_NAME}:latest" \
           "${DIR_TO_BUILD}" \
-          jupyter nbconvert .tests/*.ipynb
+          jupyter nbconvert --execute .tests/*.ipynb
