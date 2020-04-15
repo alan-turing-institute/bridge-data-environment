@@ -3,3 +3,6 @@
 
 # Ignore html files generated for testing
 **/*.html
+
+# Ignore Notebook checkpoints
+**/.ipynb_checkpoints/
