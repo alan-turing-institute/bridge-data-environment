@@ -1,9 +1,6 @@
 # JupyterHub Computational Environment
 
-| CI Status |
-| :--- |
-| ![repo2docker - master](https://github.com/alan-turing-institute/bridge-data-environment/workflows/repo2docker%20-%20master/badge.svg) |
-| ![repo2docker - pull requests](https://github.com/alan-turing-institute/bridge-data-environment/workflows/repo2docker%20-%20pull%20requests/badge.svg) |
+[![repo2docker build](https://github.com/alan-turing-institute/bridge-data-environment/workflows/repo2docker%20build/badge.svg)](https://github.com/alan-turing-institute/bridge-data-environment/actions?query=workflow%3A%22repo2docker+build%22+branch%3Amaster)
 
 A repo to manage the user environment deployed to JupyterHub :point_right: <https://github.com/alan-turing-institute/bridge-data-platform>
 
