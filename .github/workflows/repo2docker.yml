@@ -45,11 +45,14 @@ jobs:
           https://github.com/jupyter/repo2docker/archive/master.zip
 
       - name: Authenticate with Docker Hub
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
           echo ${{ secrets.DOCKER_PASSWORD }} | docker login \
           -u ${{ secrets.DOCKER_USERNAME }} \
           --password-stdin
+
+      - name: Docker pull previous build
+        run: |
+          docker pull ${IMAGE_NAME}
 
       - name: repo2docker build
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
