@@ -1,7 +1,10 @@
-name: repo2docker - master
+name: repo2docker build
 
 on:
   push:
+    branches:
+      - master
+  pull_request:
     branches:
       - master
 
@@ -12,7 +15,7 @@ env:
   DIR_TO_BUILD: ./
 
 jobs:
-  repo2docker-master:
+  repo2docker:
     env:
       IMAGE: bridge-data-env
     runs-on: ubuntu-latest
@@ -42,12 +45,14 @@ jobs:
           https://github.com/jupyter/repo2docker/archive/master.zip
 
       - name: Authenticate with Docker Hub
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
           echo ${{ secrets.DOCKER_PASSWORD }} | docker login \
           -u ${{ secrets.DOCKER_USERNAME }} \
           --password-stdin
 
       - name: repo2docker build
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
           repo2docker \
           --image-name "${IMAGE_NAME}" \
@@ -59,6 +64,12 @@ jobs:
           "${DIR_TO_BUILD}"
 
       - name: Tag and Push to Docker Hub
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
           docker tag "${IMAGE_NAME}:latest" "${IMAGE_NAME}:${DOCKER_TAG}"
           docker push "${IMAGE_NAME}:${DOCKER_TAG}"
+      
+      - name: Build and test repo2docker image
+        if: github.event.pull_request
+        run: |
+          repo2docker --cache-from "${IMAGE_NAME}" "${DIR_TO_BUILD}" jupyter nbconvert --execute .tests/*.ipynb
